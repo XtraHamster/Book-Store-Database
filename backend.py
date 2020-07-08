@@ -30,7 +30,15 @@ def search(title = '', author = '', year = '', isbn = ''):  # Empty strings as d
     conn.close()
     return rows
 
+def delete(id):
+    conn = sqlite3.connect('books.db')
+    cur = conn.cursor()
+    cur.execute("DELETE FROM book WHERE id = ?", (id,))
+    conn.commit()
+    conn.close()
+
 connect()
-insert('The Hamster', 'John Wayne', 1998, 946648352)
+insert('The Sun', 'Joshua Brown', 1998, 946648352)
+delete(1)
 print(view())
 print(search(author = 'John Tablet'))
