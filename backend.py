@@ -22,6 +22,15 @@ def view():
     conn.close()
     return rows
 
+def search(title = '', author = '', year = '', isbn = ''):  # Empty strings as default in case when user inputs only some of informations (only author, author and year, not all 4)
+    conn = sqlite3.connect('books.db')
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM book WHERE title = ? OR author = ? OR year = ? OR isbn = ?", (title, author, year, isbn))
+    rows = cur.fetchall()
+    conn.close()
+    return rows
+
 connect()
-insert('The sea', 'John Tablet', 1918, 913123123)
+insert('The Hamster', 'John Wayne', 1998, 946648352)
 print(view())
+print(search(author = 'John Tablet'))
