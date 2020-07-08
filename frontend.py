@@ -30,7 +30,10 @@ def add_command():
     list1.insert(END, (title_text.get(), author_text.get(), year_text.get(), isbn_text.get()))
 
 def delete_command():
-    backend.delete(get_selected_row(selected_tuple)[0])
+    backend.delete(selected_tuple[0])
+
+def update_command():
+    backend.update(selected_tuple[0],title_text.get(), author_text.get(), year_text.get(), isbn_text.get())
 
 window = Tk()
 
@@ -82,7 +85,7 @@ b2.grid(row = 3, column = 3)
 b3 = Button(window, text = 'Add entry', width = 12, command = add_command)
 b3.grid(row = 4, column = 3)
 
-b4 = Button(window, text = 'Update selected', width = 12)
+b4 = Button(window, text = 'Update selected', width = 12, command = update_command)
 b4.grid(row = 5, column = 3)
 
 b5 = Button(window, text = 'Delete selected', width = 12, command = delete_command)
