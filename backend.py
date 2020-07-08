@@ -3,7 +3,7 @@ import sqlite3
 def connect():
     conn = sqlite3.connect('books.db')
     cur = conn.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS book (id INTEGER, PRIMARY KEY, title TEXT, author TEXT, year INTEGER, isbn INTEGER")
+    cur.execute("CREATE TABLE IF NOT EXISTS book (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, isbn INTEGER)")
     conn.commit()
     conn.close()
 
@@ -23,3 +23,5 @@ def view():
     return rows
 
 connect()
+insert('The sea', 'John Tablet', 1918, 913123123)
+print(view())
